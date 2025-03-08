@@ -3,6 +3,7 @@ import { HomepageComponent } from './homepage.component';
 import { NotesComponent } from './notes.component';
 import { noteComponent } from './note.component';
 import  {userComponent } from './user.component';
+import {rssComponent} from './rss.component';
 
 
 export const routes: Routes = [
@@ -24,4 +25,8 @@ export const routes: Routes = [
     path: 'user',
     component: userComponent
   },
+  {
+    path: 'rss',
+    component: rssComponent
+    },
 ];
