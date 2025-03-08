@@ -1,0 +1,34 @@
+#Password {
+    background-color: #ffe9f2;
+    border-color: transparent;
+    color: rgb(68 16 1);
+    box-shadow: none;
+}
+#Password:focus {
+    background-color: #ffcbe0;
+}
+
+#Username {
+    background-color: #ffe9f2;
+    border-color: transparent;
+    color: rgb(68 16 1);
+    box-shadow: none;
+}
+#Username:focus {
+    background-color: #ffcbe0;
+}
+
+button {
+    border-color: #ffe9f2;
+    background-color: #ffe9f2;
+    color: rgb(255, 171, 217);
+}
+
+button:hover {
+    background-color: rgb(255, 171, 217);
+    color: white;
+}
+
+button:focus {
+  box-shadow: none;
+}

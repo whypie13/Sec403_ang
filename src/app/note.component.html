@@ -1,0 +1,123 @@
+<div class="container" style="margin-top: 70px">
+    @for (note of note_list; track note.title) {
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="display-1">
+          {{note.category}}
+        </div>
+
+        <p>
+        </p>
+
+        Note Num: {{ note.title}}
+      </div>
+    </div>
+
+    <p>
+    </p>
+
+    <div clas="row">
+      <div class="col-sm-6">
+      Note Brief: {{ loremIpsum }}
+      </div>
+    </div>
+
+    <p>
+    </p>
+
+    <button type="button" class="btn btn-danger" (click)="deleteNote()">Delete Note</button>
+
+    <div class="row" style="margin-top: 70px">
+        <div class="col-sm-6">
+
+          @for ( notesub of notesub_list; track notesub) {
+
+            <div class="card bg-light mb-3">
+
+              <div class="card-header">
+                  {{ notesub.username}}
+              </div>
+              <div class="card-body">
+                  {{ notesub.comment}}
+              </div>
+              <div class="card-body">
+                {{ notesub.riskscore}}
+            </div>
+            <div class="card-body">
+              {{ notesub.source}}
+          </div>
+            </div>
+            <div class="card-footer">
+            <button type="button" class="btn btn-danger" (click)="deleteNotesub(notesub._id)">Delete Note</button>
+          </div>
+          <p>
+          </p>
+          }
+
+        </div>
+    </div>
+  }
+</div>
+
+<div class="container1" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-sm-15">
+          <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+              <h2>Create a New Note</h2>
+              <form [formGroup]="notesubForm"
+                    (ngSubmit) = "onSubmit()">
+                  <div class="form-group">
+                      <label for="username">Username</label>
+                      <input type="text" name="username" id="username"
+                      class="form-control" formControlName="username"
+                      [ngClass]="{ 'error': isInvalid('username') }">
+                  </div>
+                  <div class="form-group">
+                      <label for="comment">Insert Comment Below</label>
+                      <textarea name="comment" id="comment"
+                                class="form-control" formControlName="comment"
+                                [ngClass]="{ 'error': isInvalid('comment')  }">
+                      </textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="riskscore">
+                          Please Provide a Risk Score
+                          (1 = low risk & 5 = high risk)
+                      </label>
+                      <select name="riskscore" id="riskscore"
+                              class="form-control" formControlName="riskscore">
+                          <option value="1"> 1 </option>
+                          <option value="2"> 2 </option>
+                          <option value="3"> 3 </option>
+                          <option value="4"> 4 </option>
+                          <option value="5"> 5 </option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="source">Insert Source Below</label>
+                    <textarea name="source" id="source"
+                              class="form-control" formControlName="source"
+                              [ngClass]="{ 'error': isInvalid('source')  }">
+                    </textarea>
+                </div>
+                  <span *ngIf="isIncomplete()">
+                      *Please fill out all fields*
+                  </span>
+
+                  <button
+                          class=" btn btn-primary"
+                          type="submit" style="margin-top: 20px">
+                          Submit
+                  </button>
+              </form>
+            </ng-container>
+
+            <ng-template #loggedOut>
+              <h2>
+                User Must Login to Create a Note
+              </h2>
+            </ng-template>
+        </div>
+    </div>
+</div>
