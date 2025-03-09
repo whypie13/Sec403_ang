@@ -28,6 +28,7 @@ export class rssComponent implements OnInit {
         console.error(err);
       }
     );
+
   }
 }
 
