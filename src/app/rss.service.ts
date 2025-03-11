@@ -10,7 +10,7 @@ export class RssFeedService {
 
   constructor(private http: HttpClient) {}
 
-  // Fetch filtered RSS data
+
   getFilteredRss(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }

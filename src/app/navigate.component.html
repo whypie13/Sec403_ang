@@ -13,14 +13,17 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/rss']">RSS</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/iplookup']">IP</a>
+    </li>
 
       <li class="nav-item intel">
         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Intel</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="">RSS Feeds</a>
+          <a class="dropdown-item" [routerLink]="['/rss']">RSS Feeds</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="">API's</a>
+          <a class="dropdown-item" [routerLink]="['/iplookup']">IP</a>
           <div class="dropdown-divider"></div>
         </div>
       </li>

@@ -1,0 +1,18 @@
+<div class="ip-lookup">
+  <h2>IP Address Search</h2>
+  <input type="text" [(ngModel)]="ipAddress" placeholder="Enter IP address" />
+  <button (click)="onLookup()">Lookup</button>
+
+  <div *ngIf="errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="ipData" class="result">
+    <h3>IP Data</h3>
+    <p><strong>IP Address:</strong> {{ ipData.address }}</p>
+    <p><strong>Country:</strong> {{ ipData.country }}</p>
+    <p><strong>Region:</strong> {{ ipData.region }}</p>
+    <p><strong>Timezone:</strong> {{ ipData.timezone }}</p>
+    <p><strong>Validity:</strong> {{ ipData.is_valid }}</p>
+  </div>
+</div>
