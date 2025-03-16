@@ -3,15 +3,14 @@
 </div>
 
 <p></p>
-<div *ngIf="!error">
-  <h1>Filtered RSS Feed</h1>
-<p></p>
+<div *ngIf="!error" style="text-align: center;">
+  <h1>Vulnerability RSS Feed</h1>
 
   <div *ngIf="entries.length === 0">
     <p>No entries found with the specified keywords.</p>
   </div>
 
-  <div class="container px-4" style="margin-top: 70px">
+  <div class="feed-container px-4" style="margin-top: 70px">
     <div class="row gx-5">
       <div class="col">
   <div *ngFor="let entry of entries" class="entry">

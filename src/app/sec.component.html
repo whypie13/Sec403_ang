@@ -1,0 +1,23 @@
+<div class="sec_filings">
+  <h2>8-K Sec Filings</h2>
+  <p></p>
+
+  <input type="text" [(ngModel)]="sec_filings" placeholder="Enter Form Type" />
+  <button class=" btn btn-primary"
+  type="submit" style="margin-top: 0px" (click)="onLookup()">
+  Search </button>
+
+  <div *ngIf="errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <p></p>
+
+  <div *ngIf="secData" class="result">
+    <h3>8-K Data</h3>
+    <p><strong>IP Address:</strong> {{ secData.form_type }}</p>
+    <p><strong>Country:</strong> {{ secData.ticker }}</p>
+    <p><strong>Region:</strong> {{ secData.filing_date }}</p>
+    <p><strong>Timezone:</strong> {{ secData.filing_url }}</p>
+  </div>
+</div>

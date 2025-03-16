@@ -1,13 +1,17 @@
 <div class="ip-lookup">
   <h2>IP Address Search</h2>
+  <p></p>
+
   <input type="text" [(ngModel)]="ipAddress" placeholder="Enter IP address" />
   <button class=" btn btn-primary"
-  type="submit" style="margin-top: 20px">
+  type="submit" style="margin-top: 0px" (click)="onLookup()">
   Search </button>
 
   <div *ngIf="errorMessage" class="error">
     <p>{{ errorMessage }}</p>
   </div>
+
+  <p></p>
 
   <div *ngIf="ipData" class="result">
     <h3>IP Data</h3>

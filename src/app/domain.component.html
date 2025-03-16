@@ -1,0 +1,22 @@
+<div class="whois-lookup">
+  <h2>Domain Search</h2>
+  <p></p>
+
+  <input type="text" [(ngModel)]="domain" placeholder="Enter Domain" />
+  <button class=" btn btn-primary" type="submit" style="margin-top: 0px" (click)="onLookup()"> Search </button>
+
+  <div *ngIf="errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <p></p>
+  <div *ngIf="domainData" class="result">
+    <h3>Domain Data</h3>
+    <p><strong>Domain Name:</strong> {{ domainData.domain_name }}</p>
+    <p><strong>registrar:</strong> {{ domainData.registrar }}</p>
+    <p><strong>Whois Server:</strong> {{ domainData.whois_server }}</p>
+    <p><strong>Creation Date:</strong> {{ domainData.creation_date }}</p>
+    <p><strong>Name Servers:</strong> {{ domainData.name_servers}}</p>
+    <p><strong>DNSSEC:</strong> {{ domainData.dnssec}}</p>
+  </div>
+</div>

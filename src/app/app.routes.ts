@@ -5,6 +5,8 @@ import { noteComponent } from './note.component';
 import  {userComponent } from './user.component';
 import {rssComponent} from './rss.component';
 import { IpComponent } from './ip.component';
+import { DomainComponent } from './domain.component';
+import { SecComponent } from './sec.component';
 
 
 export const routes: Routes = [
@@ -27,9 +29,17 @@ export const routes: Routes = [
   {
     path: 'rss',
     component: rssComponent
-    },
+  },
   {
     path: 'iplookup',
     component: IpComponent
-    },
+  },
+  {
+    path: 'whois',
+    component: DomainComponent
+  },
+  {
+    path: 'sec',
+    component: SecComponent
+  },
 ];
