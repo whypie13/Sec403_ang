@@ -21,8 +21,6 @@ export class noteComponent {
 
   note_list: any;
 
-  loremIpsum: any;
-
   notesubForm: any;
 
   notesub_list: any;
@@ -52,11 +50,6 @@ export class noteComponent {
     this.webService.getNote(this.route.snapshot.paramMap.get('id'))
     .subscribe( (response) => {
       this.note_list = [response];
-
-        this.dataService.getLoremIpsum(1)
-      .subscribe( (response: any) => {
-        this.loremIpsum = response.text.slice(0,300)
-      });
     });
 
     this.notesubID = this.webService.getNotesubs(this.route.snapshot.paramMap.get('id'))
