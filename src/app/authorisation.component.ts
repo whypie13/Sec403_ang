@@ -6,6 +6,7 @@ import { CommonModule } from "@angular/common";
 import { Router } from "@angular/router";
 
 
+
 @Component({
   selector: 'auth-button',
   templateUrl: 'authorisation.component.html',

@@ -4,9 +4,13 @@ import { NotesComponent } from './notes.component';
 import { noteComponent } from './note.component';
 import  {userComponent } from './user.component';
 import {rssComponent} from './rss.component';
+import {rss2Component} from './rss2.component';
+import {rss3Component} from './rss3.component';
 import { IpComponent } from './ip.component';
 import { DomainComponent } from './domain.component';
 import { SecComponent } from './sec.component';
+import { RegisterComponent } from './register.component';
+
 
 
 export const routes: Routes = [
@@ -27,8 +31,20 @@ export const routes: Routes = [
     component: userComponent
   },
   {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
     path: 'rss',
     component: rssComponent
+  },
+  {
+    path: 'rss2',
+    component: rss2Component
+  },
+  {
+    path: 'rss3',
+    component: rss3Component
   },
   {
     path: 'iplookup',
