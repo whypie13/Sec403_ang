@@ -1,23 +1,28 @@
 <div class="sec_filings">
-  <h2>8-K Sec Filings</h2>
-  <p></p>
+  <h2>SEC Filings</h2>
 
-  <input type="text" [(ngModel)]="sec_filings" placeholder="Enter Form Type" />
-  <button class=" btn btn-primary"
-  type="submit" style="margin-top: 0px" (click)="onLookup()">
-  Search </button>
 
-  <div *ngIf="errorMessage" class="error">
+  <input type="text" [(ngModel)]="sec_ticker" placeholder="Enter Ticker" />
+  <input type="text" [(ngModel)]="sec_filings" placeholder="Enter Filing Type (e.g., 8-K)" />
+
+
+  <button class="btn btn-primary" type="submit" (click)="onLookup()" style="margin-top: 10px;">
+    Search
+  </button>
+
+
+  <div *ngIf="errorMessage" class="error" style="color: red; margin-top: 10px;">
     <p>{{ errorMessage }}</p>
   </div>
 
-  <p></p>
-
-  <div *ngIf="secData" class="result">
-    <h3>8-K Data</h3>
-    <p><strong>IP Address:</strong> {{ secData.form_type }}</p>
-    <p><strong>Country:</strong> {{ secData.ticker }}</p>
-    <p><strong>Region:</strong> {{ secData.filing_date }}</p>
-    <p><strong>Timezone:</strong> {{ secData.filing_url }}</p>
+  <div *ngIf="secData.length">
+    <div *ngFor="let filing of secData">
+      <p><strong>Form Type:</strong> {{ filing.form_type || 'N/A' }}</p>
+      <p><strong>Ticker:</strong> {{ filing.ticker || 'N/A' }}</p>
+      <p><strong>Filing Date:</strong> {{ filing.filing_date || 'N/A' }}</p>
+      <p><strong>Filing URL:</strong> <a [href]="filing.filing_url" target="_blank">{{ filing.filing_url }}</a></p>
+      <hr />
+    </div>
   </div>
+
 </div>

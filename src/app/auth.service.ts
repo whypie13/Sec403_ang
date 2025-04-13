@@ -9,6 +9,8 @@ import { Observable, Subscribable } from 'rxjs';
 
 export class AuthService {
   private apiUrl = 'http://127.0.0.1:5000/api/v1.0/register';
+
+  private apiUrl2 = 'http://127.0.0.1:5000/api/v1.0/delete';
 isAuthenticated$: Observable<unknown> | Promise<unknown> | undefined;
 
   constructor(private http: HttpClient) {}
@@ -16,5 +18,9 @@ isAuthenticated$: Observable<unknown> | Promise<unknown> | undefined;
 
   register(user: any): Observable<any> {
     return this.http.post(this.apiUrl, user);
+  }
+
+  deleteuser(user: any): Observable<any> {
+    return this.http.post(this.apiUrl2, user);
   }
 }

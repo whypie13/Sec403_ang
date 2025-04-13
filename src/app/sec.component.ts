@@ -1,5 +1,7 @@
+// sec.component.ts
 import { Component, OnInit } from '@angular/core';
-import { SecService } from './sec.service';
+import { SecService } from './sec.service';  // Importing the service
+import { SecFiling } from './sec-filing.model';  // Import the SecFiling interface
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -11,27 +13,37 @@ import { FormsModule } from '@angular/forms';
 })
 export class SecComponent implements OnInit {
   sec_filings: string = '8-K';
-  secData: any = null;
+  sec_ticker: string = 'AAPL';
+  secData: SecFiling[] = [];
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private apiService: SecService) {}
 
   ngOnInit(): void {}
 
   onLookup(): void {
-    if (this.sec_filings) {
-      this.apiService.getSecInfo(this.sec_filings).subscribe(
+    if (this.sec_filings && this.sec_ticker) {
+      this.isLoading = true;
+
+      this.apiService.getSecInfo(this.sec_ticker, this.sec_filings).subscribe(
         (data) => {
-          this.secData = data;
-          this.errorMessage = '';
+          console.log('Response Data:', data);
+
+          if (Array.isArray(data)) {
+            this.secData = data;
+          } else if (data) {
+            this.secData = [data]; // wrap object in array
+          } else {
+            this.secData = [];
+            this.errorMessage = 'No data found.';
+          }
+
+          this.isLoading = false;
         },
-        (error) => {
-          this.secData = null;
-          this.errorMessage = 'Failed to find 8-K information.';
-        }
       );
     } else {
-      this.errorMessage = 'Please enter a form type.';
+      this.errorMessage = 'Please enter both a ticker and form type.';
     }
   }
 }

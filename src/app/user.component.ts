@@ -13,6 +13,7 @@ import { CommonModule } from "@angular/common";
 
 
 export class userComponent {
+user: any;
 
   constructor(public auth: AuthService) {}
 }

@@ -46,16 +46,15 @@ export class noteComponent {
       riskscore: ["", Validators.required],
       source: ["", Validators.required]
     });
-    this.noteID = this.route.snapshot.paramMap.get('id');
-    this.webService.getNote(this.route.snapshot.paramMap.get('id'))
-    .subscribe( (response) => {
+    const noteId = this.route.snapshot.paramMap.get('id');
+    this.noteID = noteId;
+
+    this.webService.getNote(noteId).subscribe((response) => {
       this.note_list = [response];
     });
 
-    this.notesubID = this.webService.getNotesubs(this.route.snapshot.paramMap.get('id'))
-    this.webService.getNotesubs(this.route.snapshot.paramMap.get('id'))
-    .subscribe( (response) => {
-      this.notesub_list = response;
+    this.webService.getNotesubs(noteId).subscribe((response) => {
+      this.notesub_list = response || [];
     });
   }
 
