@@ -1,37 +1,48 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
+
 export class RegisterComponent {
-  registerForm: FormGroup;
+  name: string = '';
+  username: string = '';
+  password: string = '';
+  email: string = '';
+  errorMessage: string = '';
+  successMessage: string = '';
 
-  constructor(private fb: FormBuilder, public authService: AuthService) {
-    this.registerForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
-  }
+  constructor(private userService: UserService) {}
 
-  isInvalid(control: any) {
-    return this.registerForm.controls[control].invalid && this.registerForm.controls[control].touched;
-  }
 
-  onSubmit() {
-    if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe(
-        response => alert('Registration successful!'),
-        error => alert('Registration failed! Try a different username or email.')
-      );
+  onRegister(): void {
+    if (!this.name || !this.username || !this.password || !this.email) {
+      this.errorMessage = 'All fields are required';
+      return;
     }
-  }
-}
 
+    const userData = {
+      name: this.name,
+      username: this.username,
+      password: this.password,
+      email: this.email
+    };
+
+    this.userService.registerUser(userData).subscribe(
+      (response) => {
+        this.successMessage = 'User registered successfully!';
+        this.errorMessage = '';
+      },
+      (error) => {
+        this.successMessage = '';
+        this.errorMessage = error.error?.message || 'An error occurred during registration. Please try again.';
+      }
+    );
+  }
+  }
