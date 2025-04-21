@@ -1,7 +1,10 @@
-<h3 style="margin-top: 30px">
-  Current User Details
-  </h3>
+<div *ngIf="user" class="card p-4 shadow mt-4" style="max-width: 400px; margin: auto;">
+  <h2 class="text-center mb-4">User Profile</h2>
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>Username:</strong> {{ user.username }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+</div>
 
-  <ul *ngIf="auth.user$ | async as user">
-      <li>{{ user.name }}</li>
-  </ul>
+<div *ngIf="!user" class="text-center mt-4">
+  <p>User not logged in or token is invalid.</p>
+</div>

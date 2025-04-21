@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private apiUrl = 'http://127.0.0.1:5000/api/v1.0/register';
+  private apiUrl1 = 'http://127.0.0.1:5000/api/v1.0/login';
 
   constructor(private http: HttpClient) {}
 
@@ -20,5 +21,18 @@ export class UserService {
 
     return this.http.post<any>(this.apiUrl, userData);
   }
+
+  login(username: string, password: string) {
+    return this.http.post<any>(
+      'http://127.0.0.1:5000/api/v1.0/login',
+      { username, password },  // this is the request body
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+  }
+
 
 }

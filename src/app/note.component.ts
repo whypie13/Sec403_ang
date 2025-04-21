@@ -76,10 +76,10 @@ export class noteComponent {
 
 
   deleteNotesub(notesubID:string): void {
-    if (this.notesubID && confirm('Are you sure you want to delete this note?')) {
+    if (notesubID && confirm('Are you sure you want to delete this note?')) {
       this.webService.deleteNotesub(this.noteID, notesubID).subscribe(
         () => {
-          console.log('Note deleted successfully');
+          console.log('Note deleted successfully', notesubID, this.noteID);
           window.location.reload();
         },
         (error) => {
@@ -112,7 +112,7 @@ export class noteComponent {
 
   isUntouched() {
     return this.notesubForm.controls.username.pristine ||
-           this.notesubForm.controls.category.pristine ||
+           this.notesubForm.controls.comment.pristine ||
            this.notesubForm.controls.riskscore.pristine ||
            this.notesubForm.controls.source.pristine;
   }
@@ -120,7 +120,7 @@ export class noteComponent {
 
   isIncomplete() {
     return this.isInvalid('username') ||
-           this.isInvalid('category') ||
+           this.isInvalid('comment') ||
            this.isInvalid('riskscore') ||
            this.isInvalid('source') ||
            this.isUntouched();

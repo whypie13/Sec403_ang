@@ -10,6 +10,7 @@ import { IpComponent } from './ip.component';
 import { DomainComponent } from './domain.component';
 import { SecComponent } from './sec.component';
 import { RegisterComponent } from './register.component';
+import { LoginComponent } from './login.component';
 
 
 
@@ -33,6 +34,10 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'rss',
