@@ -3,8 +3,19 @@
   <p><strong>Name:</strong> {{ user.name }}</p>
   <p><strong>Username:</strong> {{ user.username }}</p>
   <p><strong>Email:</strong> {{ user.email }}</p>
+
+
+  <button class="btn btn-danger mt-3" (click)="deleteAccount()">Delete Account</button>
+
+
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
 </div>
 
 <div *ngIf="!user" class="text-center mt-4">
-  <p>User not logged in or token is invalid.</p>
+  <p>User Not Logged In</p>
 </div>

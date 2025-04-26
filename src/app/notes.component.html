@@ -16,7 +16,7 @@
       </div>
 
       <div class="col">
-        <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+        <ng-container *ngIf="UserService.LoggedIn">
           <h2>Create a New Forum Entry</h2>
           <form [formGroup]="noteForm"
                 (ngSubmit) = "onSubmit()">
@@ -42,7 +42,7 @@
           </form>
         </ng-container>
 
-        <ng-template #loggedOut>
+        <ng-template *ngIf="!UserService.logout">
           <h2>
             User Must Login to Create a New Category
           </h2>

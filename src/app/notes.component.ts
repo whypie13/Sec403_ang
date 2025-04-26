@@ -5,13 +5,14 @@ import { webService } from './web.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '@auth0/auth0-angular';
+import { UserService } from './user.service';
 
 
 @Component({
   selector: 'notes',
   standalone: true,
   imports: [RouterOutlet, RouterModule, CommonModule, ReactiveFormsModule],
-  providers: [Dataservice, webService],
+  providers: [Dataservice, webService, UserService],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.css'
 })
@@ -30,6 +31,7 @@ export class NotesComponent {
     title: '',
     category: ''
   };
+userService: any;
 
 
   constructor(public dataService: Dataservice,
@@ -37,7 +39,8 @@ export class NotesComponent {
               private route: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder,
-              public authService: AuthService) {}
+              public authService: AuthService,
+              public UserService: UserService) {}
 
 
 

@@ -40,23 +40,27 @@
         </div>
       </li>
 
-      <li class="nav-item user">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button"
-           data-bs-toggle="dropdown" aria-expanded="false">User</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
-          <a class="dropdown-item" [routerLink]="['/login']">Login</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/register']">Signup</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/user']">Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="">Delete Account</a>
-        </div>
-      </li>
+     <li class="nav-item user dropdown" *ngIf="!userService.LoggedIn; else loggedInUser">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button"
+     data-bs-toggle="dropdown" aria-expanded="false">User</a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+    <a class="dropdown-item" [routerLink]="['/login']">Login</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" [routerLink]="['/register']">Signup</a>
+  </div>
+</li>
+
+<ng-template #loggedInUser>
+  <li class="nav-item user dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button"
+       data-bs-toggle="dropdown" aria-expanded="false">User</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+      <a class="dropdown-item" [routerLink]="['/user']">Profile</a>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item" (click)="logout()">Logout</button>
+    </div>
+  </li>
+</ng-template>
     </ul>
   </div>
 
-  <div class="form-inline ms-auto" style="margin-right: 10px">
-    <auth-button></auth-button>
-  </div>
-</div>

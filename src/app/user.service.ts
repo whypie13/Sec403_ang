@@ -7,9 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private apiUrl = 'http://127.0.0.1:5000/api/v1.0/register';
-  private apiUrl1 = 'http://127.0.0.1:5000/api/v1.0/login';
 
-  constructor(private http: HttpClient) {}
+  LoggedIn = false
+
+  constructor(private http: HttpClient) {
+    const savedLogin = localStorage.getItem('token');
+    if (savedLogin) {
+      this.LoggedIn = true;
+    }
+  }
 
   registerUser(user: { name: string; username: string; password: string; email: string}): Observable<any> {
     const userData = {
@@ -25,7 +31,7 @@ export class UserService {
   login(username: string, password: string) {
     return this.http.post<any>(
       'http://127.0.0.1:5000/api/v1.0/login',
-      { username, password },  // this is the request body
+      { username, password },
       {
         headers: {
           'Content-Type': 'application/json'
@@ -34,5 +40,23 @@ export class UserService {
     );
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    this.LoggedIn = false;
+  }
+  deleteAccount(userId: string): Observable<any> {
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      return new Observable(observer => {
+        observer.error('User is not logged in');
+      });
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.delete(`${this.apiUrl}/users/${userId}`, { headers });
+  }
 
 }

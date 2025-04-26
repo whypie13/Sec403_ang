@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -16,7 +17,7 @@ export class LoginComponent {
   errorMessage: string = '';
   successMessage: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   onLogin() {
     this.userService.login(this.username, this.password).subscribe({
@@ -24,7 +25,12 @@ export class LoginComponent {
         this.successMessage = 'Login successful!';
         this.errorMessage = '';
         localStorage.setItem('token', response.token);
-        // Optional: redirect or emit event
+        this.userService.LoggedIn = true;
+        localStorage.setItem('isLoggedIn', 'true');
+
+        setTimeout(() => {
+          this.router.navigate(['/user']);
+        }, 1000);
       },
       error: (err) => {
         this.successMessage = '';
