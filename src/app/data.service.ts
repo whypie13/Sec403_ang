@@ -37,15 +37,6 @@ export class Dataservice {
   }
 
 
-  getLoremIpsum(paragraphs: number): Observable<any> {
-
-    let API_key = 'o1LlHDrpMx7YiXiE9hXwwQ==mrxycYUPUQJYXbj0';
-    return this.http.get<any>(
-      'https://api.api-ninjas.com/v1/loremipsum?paragraphs=' + paragraphs,
-      { headers: { 'X-Api-Key': API_key}}
-    );
-  }
-
   getIpLookup(address = '73.9.149.180'): Observable<any> {
 
     let API_key = 'o1LlHDrpMx7YiXiE9hXwwQ==mrxycYUPUQJYXbj0';

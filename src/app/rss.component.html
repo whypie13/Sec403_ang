@@ -1,3 +1,4 @@
+<div class="card p-4 shadow mt-4" style="max-width: 950px; margin: auto;">
 <div *ngIf="error" style="color: red;">
   <p>{{ error }}</p>
 </div>
@@ -15,11 +16,11 @@
       <div class="col">
   <div *ngFor="let entry of entries" class="entry">
     <h2><a [href]="entry.link" target="_blank">{{ entry.title }}</a></h2>
-    <!-- <time>{{ entry.published }}</time> -->
     <p>{{ entry.description }}....</p>
     <p>Please Click The Title To Read More</p>
   </div>
       </div>
     </div>
+</div>
 </div>
 

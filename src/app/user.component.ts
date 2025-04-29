@@ -44,7 +44,7 @@ export class userComponent implements OnInit {
   }
   deleteAccount(): void {
     const userId = this.user.username;
-    const confirmation = confirm('DO you want to delete your account? This action cannot be undone.');
+    const confirmation = confirm('Do you want to delete your account? This action cannot be undone.');
 
     if (confirmation) {
       this.userService.deleteAccount(userId).subscribe(

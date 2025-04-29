@@ -1,7 +1,7 @@
 // sec.component.ts
 import { Component, OnInit } from '@angular/core';
-import { SecService } from './sec.service';  // Importing the service
-import { SecFiling } from './sec-filing.model';  // Import the SecFiling interface
+import { SecService } from './sec.service';
+import { SecFiling } from './sec-filing.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -33,7 +33,7 @@ export class SecComponent implements OnInit {
           if (Array.isArray(data)) {
             this.secData = data;
           } else if (data) {
-            this.secData = [data]; // wrap object in array
+            this.secData = [data];
           } else {
             this.secData = [];
             this.errorMessage = 'No data found.';

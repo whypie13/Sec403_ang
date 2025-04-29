@@ -2,8 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SecFiling } from './sec-filing.model';  // Import the SecFiling interface
-
+import { SecFiling } from './sec-filing.model';
 @Injectable({
   providedIn: 'root',
 })
